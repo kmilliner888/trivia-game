@@ -1,25 +1,21 @@
-import logo from './logo.svg';
+// App is start page for game, includes title, instructions, PLAY GAME button
+import React from 'react';
 import './App.css';
+import Start from './components/Start';
+import Game from './components/Game';
+import { Route } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="app">
+      <header className="header">
+          <h1 className="header-h1">Trivia Game</h1>
+          <h2 className="header-h2">Train to improve your trivia knowledge by answering random questions!</h2>
       </header>
+      <Route exact path='/' component ={Start}/>
+      <Route path='/game' component={Game}/>
     </div>
   );
-}
+};
 
 export default App;
