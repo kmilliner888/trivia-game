@@ -37,4 +37,15 @@
   }
 }
 
+.form {
+  display: block;
+}
+
+label {
+  display: block;
+}
+
+input {
+  display: inline-block;
+}
 
