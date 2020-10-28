@@ -1,31 +1,29 @@
-// Card component is a card with a trivia question and multiple choice answers
+/* Card component is a card with a trivia question,
+multiple choice answers, submit button, and shows answer result */
 
 import React, { useState, useEffect } from "react";
 
 
-// let disableInput = document.getElementsByTagName('input').disabled === true;
-
-// CREATE A QUESTION CARD, USING PROPS (data) FROM THE DECK COMPONENT
+// CREATE A QUESTION CARD, USING PROPS (data) FROM THE GAME COMPONENT
 const Card = (props) => {
     console.log('Card props', props);
-    // HERE IS WHERE WE COLLECT OUR ANSWER CHOICE, AND CREATE AN ARRAY OF CORRECT ANSWERS
+    // Collect the input selection here
     const [selection, setSelection] = useState([]);
+    // If the input choice is correct, correct selection collected here
     const [correctAnswer, setCorrectAnswer] = useState([]);
+    // When submit button is clicked, boolean is updated here to show answer
     const [showResults, setShowResults] = useState(false)
+    // When submit button is clicked, boolean is updated to disable all inputs so answer can only be submitted once
     const [submit, setSubmit] = useState(false);
+
     console.log('selection', selection);
     console.log('correctAnswer', correctAnswer);
 
-    let didSubmit = false;
-
+    // Selection state gets updated when input is clicked
     const onChange = e => {
         setSelection(e.target.value);
     }
-
-    // const submitted = () => (
-    //     {onSubmit === true ? true : false}
-    // );
-
+    // On submit: prevents page from re-loading and updates submit state to true
     const onSubmit = e => {
         e.preventDefault();
         setSubmit(true);
@@ -33,12 +31,13 @@ const Card = (props) => {
     console.log("submit", submit);
 
     // USEEFFECT WILL TRACK CHANGES AND MAKE SURE WE DON'T KEEP RE-RENDERING
+    // If the input selection is the correct answer, add selection to the correctAnswer state
     useEffect(() => {
         if (selection === props.correct) {
             setCorrectAnswer([...correctAnswer, selection]);
         };
     }, [selection]);
-
+    // function for submit button onClick: updates showResult state to true, and shows Results
     const onClick = ()=> {
         setShowResults(true)
         return (
@@ -47,60 +46,18 @@ const Card = (props) => {
             </div>
         )
     }
-
+    // Results will display the selected answer
     const Results = () => (
         <div>
             {selection === props.correct ? `CORRECT! Answer is: ${props.correct}` : `INCORRECT. Answer is: ${props.correct}`}
         </div>
     )
 
-    // const onCorrectSelection = () => {
-    //     return (
-    //         selection != 0 ? disableInput : null
-    //     )
-    // };
-
-
-    // props.getData(correctAnswer);
-
-    // props.setCardData(correctAnswers);
-    // THIS FUNCTION WILL RANDOMIZE OUR ANSWER CHOICES SO THEY WILL NOT ALWAYS APPEAR IN THE SAME ORDER
-    // function shuffle(array) {
-    //     var currentIndex = array.length, temporaryValue, randomIndex;
-
-    //     // While we still have items in the array or it's not 0 items
-    //     while (0 !== currentIndex) {
-
-    //       // We select one of the items that is left or have not been used yet
-    //       randomIndex = Math.floor(Math.random() * currentIndex); //This randomizes
-    //       currentIndex -= 1;
-
-    //       // Then we switch it with the current one
-    //       temporaryValue = array[currentIndex];
-    //       array[currentIndex] = array[randomIndex];
-    //       array[randomIndex] = temporaryValue;
-    //     }
-
-    //     return array;
-    //   };
-
-    //   shuffle(props.answers);
-
-    //   function shuffleArray(array) {
-    //     for (let i = array.length - 1; i > 0; i--) {
-    //         const j = Math.floor(Math.random() * (i + 1));
-    //         [array[i], array[j]] = [array[j], array[i]];
-    //     }
-    // }
-
-    // shuffleArray(props.answers);
-
-    // const showAnswer = (e) => {
-    //     return e.target.value === props.correct ? `CORRECT! Answer is: ${props.correct}` : `INCORRECT. Answer is: ${props.correct}`
-    // }
-
-
-
+    // USE A FORM, LABELS, AND INPUTS TO DISPLAY QUESTION AND ANSWER CHOICES
+    // Use onClick() for submit button
+    // There are 4 choices for each question in the array, so value displays each answer choice by index
+    // Each selection is an answer from the array, and thus gets checked upon clicking
+    // All inputs get disabled if the submit state becomes true
     return (
         <div className="card">
             <h1>{props.question}</h1>
