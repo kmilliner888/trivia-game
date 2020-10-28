@@ -9,46 +9,37 @@ import { Link } from 'react-router-dom';
 
 
 const Game = () => {
-    let randomData = [data[Math.floor(Math.random()*data.length)]];
-
-    const [cardData, setCardData] = useState(randomData);
-    console.log('cardData', cardData);
-
-    let numberOfCards = cardData.length;
-    console.log('numberOfCards', numberOfCards);
-    let maxNumberCards = 10;
-
-    const clickCard = () => {
-        while (numberOfCards <= maxNumberCards) {
-            {cardData.map(item=> {
-                <div className="card">
-                    <Card
-                    key={item.id}
-                    id={item.id}
-                    question={item.question}
-                    answers={item.answers}
-                    incorrect={item.incorrect}
-                    correct={item.correct}
-                    />
-                </div>
-            })};
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        return array;
         };
     };
 
+    const [cardData, setCardData] = useState(shuffleArray(data));
+    console.log('cardData', cardData);
+
+    //Round consists of random 10 cards/objects from data array
+    let triviaRound = cardData.slice(0,10).map((card) => {
+        return <Card
+        key={card.id}
+        id={card.id}
+        question={card.question}
+        answers={card.answers}
+        incorrect={card.incorrect}
+        correct={card.correct}
+        />
+    });
+
+    console.log('triviaRound', triviaRound);
 
     return (
         <div className="game">
-            <div className="card">
-                <Card
-                key={cardData[0].id}
-                id={cardData[0].id}
-                question={cardData[0].question}
-                answers={cardData[0].answers}
-                incorrect={cardData[0].incorrect}
-                correct={cardData[0].correct}
-                />
-            </div>
-            <button className="button" onClick={clickCard}>NEXT</button>
+            {triviaRound}
+            <button className="button">NEXT</button>
             <Link to='/'><button className="button">HOME</button></Link>
         </div>
     );
