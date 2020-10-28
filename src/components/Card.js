@@ -2,26 +2,66 @@
 
 import React, { useState, useEffect } from "react";
 
+
+// let disableInput = document.getElementsByTagName('input').disabled === true;
+
 // CREATE A QUESTION CARD, USING PROPS (data) FROM THE DECK COMPONENT
-const Card = props => {
+const Card = (props) => {
     console.log('Card props', props);
     // HERE IS WHERE WE COLLECT OUR ANSWER CHOICE, AND CREATE AN ARRAY OF CORRECT ANSWERS
     const [selection, setSelection] = useState([]);
-    const [correctAnswers, setCorrectAnswers] = useState([]);
+    const [correctAnswer, setCorrectAnswer] = useState([]);
+    const [showResults, setShowResults] = useState(false)
+    const [submit, setSubmit] = useState(false);
     console.log('selection', selection);
-    console.log('correctAnswers', correctAnswers);
-    // USEEFFECT WILL TRACK CHANGES AND MAKE SURE WE DON'T KEEP RE-RENDERING
-    useEffect(() => {
-        if (selection === props.correct) {
-            setCorrectAnswers([...correctAnswers, selection])
-        };
-    }, [selection])
+    console.log('correctAnswer', correctAnswer);
 
-    props.getData(correctAnswers);
+    let didSubmit = false;
 
     const onChange = e => {
         setSelection(e.target.value);
     }
+
+    // const submitted = () => (
+    //     {onSubmit === true ? true : false}
+    // );
+
+    const onSubmit = e => {
+        e.preventDefault();
+        setSubmit(true);
+    }
+    console.log("submit", submit);
+
+    // USEEFFECT WILL TRACK CHANGES AND MAKE SURE WE DON'T KEEP RE-RENDERING
+    useEffect(() => {
+        if (selection === props.correct) {
+            setCorrectAnswer([...correctAnswer, selection]);
+        };
+    }, [selection]);
+
+    const onClick = ()=> {
+        setShowResults(true)
+        return (
+            <div>
+                {showResults ? <Results /> : null}
+            </div>
+        )
+    }
+
+    const Results = () => (
+        <div>
+            {selection === props.correct ? `CORRECT! Answer is: ${props.correct}` : `INCORRECT. Answer is: ${props.correct}`}
+        </div>
+    )
+
+    // const onCorrectSelection = () => {
+    //     return (
+    //         selection != 0 ? disableInput : null
+    //     )
+    // };
+
+
+    // props.getData(correctAnswer);
 
     // props.setCardData(correctAnswers);
     // THIS FUNCTION WILL RANDOMIZE OUR ANSWER CHOICES SO THEY WILL NOT ALWAYS APPEAR IN THE SAME ORDER
@@ -64,7 +104,7 @@ const Card = props => {
     return (
         <div className="card">
             <h1>{props.question}</h1>
-            <div className="question">
+            <form className="question" onSubmit={onSubmit}>
                 <label>
                     <input
                     type="radio"
@@ -72,6 +112,7 @@ const Card = props => {
                     name="answer"
                     className="input"
                     checked={selection === props.answers[0]}
+                    disabled={submit === true ? true : false}
                     onChange={onChange}
                     />
                 {props.answers[0]}
@@ -83,6 +124,7 @@ const Card = props => {
                     name="answer"
                     className="input"
                     checked={selection === props.answers[1]}
+                    disabled={submit === true ? true : false}
                     onChange={onChange}
                     />
                 {props.answers[1]}
@@ -94,6 +136,7 @@ const Card = props => {
                     name="answer"
                     className="input"
                     checked={selection === props.answers[2]}
+                    disabled={submit === true ? true : false}
                     onChange={onChange}
                     />
                 {props.answers[2]}
@@ -105,14 +148,16 @@ const Card = props => {
                     name="answer"
                     className="input"
                     checked={selection === props.answers[3]}
+                    disabled={submit === true ? true : false}
                     onChange={onChange}
                     />
                 {props.answers[3]}
                 </label>
+                <button className="button" type="submit" onClick={onClick}>Submit Answer</button>
+            </form>
+            <div>
+                {showResults ? <Results /> : null}
             </div>
-            {selection === props.correct ? `CORRECT! Answer is: ${props.correct}` : `INCORRECT. Answer is: ${props.correct}`}
-
-
         </div>
     );
 };

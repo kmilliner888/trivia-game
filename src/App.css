@@ -49,3 +49,9 @@ input {
   display: inline-block;
 }
 
+.answer-show {
+  display: inline-block;
+}
+.answer-hide {
+  display: none;
+}
