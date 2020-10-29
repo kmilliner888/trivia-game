@@ -26,7 +26,7 @@ const Game = () => {
     const [cardData, setCardData] = useState(shuffleArray(data).slice(0,10));
     const [card, setCard] = useState(0);
     const [score, setScore] = useState([]);
-    // const [showTotal, setShowTotal] = useState(false);
+    const [showTotal, setShowTotal] = useState(false);
     console.log('cardData', cardData);
     console.log('card', card);
     console.log('score', score);
@@ -58,23 +58,24 @@ const Game = () => {
         });
     };
 
-    // const handleScoreOnClick = () => {
-    //     if (triviaRound.length === 10) {
-    //         setShowTotal(true)
-    //     }
-    //     return (
-    //         <div>
-    //             {<Score />}
-    //         </div>
-    //     )
-    // };
+    const handleScoreOnClick = (i) => {
+        if (card === null) {
+            console.log('triviaRound current', triviaRound);
+            setShowTotal(true)
+        }
+        return (
+            <div>
+                {<Score />}
+            </div>
+        )
+    };
 
     // Score will display the total round score
-    // const Score = () => (
-    //     <div>
-    //         {`Your Score: ${score.length}`}
-    //     </div>
-    // )
+    const Score = () => (
+        <div>
+            {`Your Score: ${score.length}`}
+        </div>
+    )
 
     //Round consists of random 10 cards/objects from cardData array
     // Create triviaRound which is set to randomized data array
@@ -88,11 +89,11 @@ const Game = () => {
                 {triviaRound[card]}
             </div>
             <div className="score">
-            {`Your Score: ${score.length}`}
+            {showTotal? <Score /> : null}
             </div>
             <button className="button" onClick={handleCardOnClick}>NEXT</button>
             <Link to='/'><button className="button">HOME</button></Link>
-            {/* <button className="button" onClick={handleScoreOnClick}>Get Score</button> */}
+            <button className="button" onClick={handleScoreOnClick}>Get Score</button>
         </div>
     );
 };
