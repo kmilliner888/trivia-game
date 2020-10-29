@@ -34,10 +34,10 @@ const Card = (props) => {
     // USEEFFECT WILL TRACK CHANGES AND MAKE SURE WE DON'T KEEP RE-RENDERING
     // If the input selection is the correct answer, add selection to the correctAnswer state
     useEffect(() => {
-        if (selection === props.correct) {
+        if (submit === true && selection === props.correct) {
             props.collectCorrect(correctAnswer);
         };
-    }, [selection]);
+    }, [submit, selection]);
     // function for submit button onClick: updates showResult state to true, and shows Results
     const onClick = ()=> {
         setShowResults(true)
