@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react";
 // CREATE A QUESTION CARD, USING PROPS (data) FROM THE GAME COMPONENT
 const Card = (props) => {
     console.log('Card props', props);
+    console.log('collectCorrect', props.collectCorrect);
     // Collect the input selection here
     const [selection, setSelection] = useState([]);
     // If the input choice is correct, correct selection collected here
@@ -34,7 +35,7 @@ const Card = (props) => {
     // If the input selection is the correct answer, add selection to the correctAnswer state
     useEffect(() => {
         if (selection === props.correct) {
-            setCorrectAnswer([...correctAnswer, selection]);
+            props.collectCorrect(correctAnswer);
         };
     }, [selection]);
     // function for submit button onClick: updates showResult state to true, and shows Results
@@ -51,7 +52,8 @@ const Card = (props) => {
         <div>
             {selection === props.correct ? `CORRECT! Answer is: ${props.correct}` : `INCORRECT. Answer is: ${props.correct}`}
         </div>
-    )
+    );
+
 
     // USE A FORM, LABELS, AND INPUTS TO DISPLAY QUESTION AND ANSWER CHOICES
     // Use onClick() for submit button

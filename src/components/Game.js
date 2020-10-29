@@ -23,15 +23,34 @@ const Game = () => {
     };
 
     // Shuffle the data array and set it to cardData state
-    const [cardData, setCardData] = useState(shuffleArray(data));
+    const [cardData, setCardData] = useState(shuffleArray(data).slice(0,10));
     const [card, setCard] = useState(0);
+    const [score, setScore] = useState([]);
     console.log('cardData', cardData);
     console.log('card', card);
+    console.log('score', score);
+
+    const collectAnswers = answer => {
+        setScore([...score, answer]);
+    };
+
+    let triviaRound = cardData.map((card) => {
+        return <Card
+        key={card.id}
+        id={card.id}
+        question={card.question}
+        answers={card.answers}
+        incorrect={card.incorrect}
+        correct={card.correct}
+        collectCorrect = {collectAnswers}
+        />
+    });
+
 
     const handleCardOnClick = () => {
         setCard(prev => {
             if (prev === triviaRound.length-1) {
-                return 0;
+                return null;
             } else {
                 return prev + 1;
             }
@@ -42,21 +61,15 @@ const Game = () => {
     // Create triviaRound which is set to randomized data array
     // Limits number of cards to 10, then maps over the array
     // 10 Card components created for the triviaRound
-    let triviaRound = cardData.slice(0,10).map((card) => {
-        return <Card
-        key={card.id}
-        id={card.id}
-        question={card.question}
-        answers={card.answers}
-        incorrect={card.incorrect}
-        correct={card.correct}
-        />
-    });
+    console.log('triviaRound', triviaRound);
 
     return (
         <div className="game">
             <div>
                 {triviaRound[card]}
+            </div>
+            <div className="score">
+                {`Your Score: ${score.length}`}
             </div>
             <button className="button" onClick={handleCardOnClick}>NEXT</button>
             <Link to='/'><button className="button">HOME</button></Link>
