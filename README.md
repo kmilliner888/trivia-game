@@ -23,10 +23,10 @@
 ### How to play:
 
 - Each trivia round includes 10 questions with multiple choice answers.
-- Click **PLAY GAME** button to begin trivia round.
+- Click **PLAY GAME** button below to begin trivia round.
 - Read question, then selection your answer from the list of multiple choices
 - If correct, you will see *CORRECT! Answer: (correct answer)*
 - If incorrect, you will see *INCORRECT. Correct Answer: (correct answer)*
-- Click **NEXT QUESTION** button to move on to the next question.
+- Click **NEXT** button to move on to the next question.
 - After last question in the round, click **GET SCORE** button to see # of correct questions answered.
-- Click **PLAY GAME** button to play another round of trivia, or **QUIT** button to return to start screen.
+- Click **PLAY AGAIN** button to play another round of trivia.
