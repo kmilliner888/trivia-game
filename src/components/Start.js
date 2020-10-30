@@ -14,7 +14,7 @@ const Start = () => {
                     <li className="li">After last question in the round, click GET SCORE button to see # of correct questions answered.</li>
                     <li className="li">Click PLAY GAME button to play another round of trivia, or QUIT button to return to start screen.</li>
                 </ul>
-            <Link to='/game'><button className="button">PLAY GAME</button></Link>
+            <Link to='/game'><button className="button" id="start-button">PLAY GAME</button></Link>
         </div>
     );
 };

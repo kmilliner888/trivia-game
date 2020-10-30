@@ -3,12 +3,15 @@
 
 /*eslint-disable-next-line no-unused-expressions*/
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./Card";
 import data from '../data/data';
 import { Link } from 'react-router-dom';
 
-
+//Round consists of random 10 cards/objects from cardData array
+// Create triviaRound which is set to randomized data array
+// Limits number of cards to 10, then maps over the array
+// 10 Card components created for the triviaRound
 
 const Game = () => {
     //Create a shuffle function to randomize the questions in the data array
@@ -27,9 +30,6 @@ const Game = () => {
     const [card, setCard] = useState(0);
     const [score, setScore] = useState([]);
     const [showTotal, setShowTotal] = useState(false);
-    console.log('cardData', cardData);
-    console.log('card', card);
-    console.log('score', score);
 
     const collectAnswers = answer => {
         setScore([...score, answer]);
@@ -60,28 +60,32 @@ const Game = () => {
 
     const handleScoreOnClick = (i) => {
         if (card === null) {
-            console.log('triviaRound current', triviaRound);
             setShowTotal(true)
         }
         return (
             <div>
-                {<Score />}
+                {<Score />};
             </div>
         )
     };
 
-    // Score will display the total round score
     const Score = () => (
         <div>
             {`Your Score: ${score.length}`}
         </div>
-    )
+    );
 
-    //Round consists of random 10 cards/objects from cardData array
-    // Create triviaRound which is set to randomized data array
-    // Limits number of cards to 10, then maps over the array
-    // 10 Card components created for the triviaRound
-    console.log('triviaRound', triviaRound);
+    const ScoreButton = () => (
+        <div>
+            {<button className="button" id="get-score" onClick={handleScoreOnClick}>GET SCORE</button>}
+        </div>
+    );
+
+    const NextButton = () => (
+        <div>
+            {<button className="button" id="next" onClick={handleCardOnClick}>NEXT {"\u2192"}</button>}
+        </div>
+    )
 
     return (
         <div className="game">
@@ -89,11 +93,13 @@ const Game = () => {
                 {triviaRound[card]}
             </div>
             <div className="score">
-            {showTotal? <Score /> : null}
+                {showTotal? <Score /> : null}
             </div>
-            <button className="button" onClick={handleCardOnClick}>NEXT</button>
-            <Link to='/'><button className="button">HOME</button></Link>
-            <button className="button" onClick={handleScoreOnClick}>Get Score</button>
+            <div className="button-box">
+                <Link to='/'><button className="button" id="play-again">PLAY AGAIN</button></Link>
+                {card === null ? <ScoreButton /> : null}
+                {card === null ? null : <NextButton />}
+            </div>
         </div>
     );
 };

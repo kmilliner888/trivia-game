@@ -112,7 +112,7 @@ const Card = (props) => {
                     />
                 {props.answers[3]}
                 </label>
-                <button className="button" type="submit" onClick={onClick}>Submit Answer</button>
+                <button className="button" type="submit" id="submit" onClick={onClick}>Submit Answer</button>
             </form>
             <div>
                 {showResults ? <Results /> : null}

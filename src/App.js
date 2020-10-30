@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div className="app">
       <header className="header">
-          <h1 className="header-h1">Trivia Game</h1>
+          <h1 className="header-h1">Trivia Time</h1>
           <h2 className="header-h2">Train to improve your trivia knowledge by answering random questions!</h2>
       </header>
       <Route exact path='/' component ={Start}/>

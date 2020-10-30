@@ -1,7 +1,7 @@
 export const data = [
   {
     id: 1,
-    question: "What was Tandem previous name?",
+    question: "What was Tandem's previous name?",
     answers: ["Tandem", "Burger Shack", "Extraordinary Humans", "Devmynd"],
     incorrect: ["Tandem", "Burger Shack", "Extraordinary Humans"],
     correct: "Devmynd"
