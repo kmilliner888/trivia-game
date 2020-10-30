@@ -83,7 +83,7 @@ const Game = () => {
 
     const NextButton = () => (
         <div>
-            {<button className="button" id="next" onClick={handleCardOnClick}>NEXT {"\u2192"}</button>}
+            {<button className="button next-blink" id="next" onClick={handleCardOnClick}>NEXT {"\u2192"}</button>}
         </div>
     )
 

@@ -34,6 +34,7 @@ footer {
   color: grey;
   width: 100%;
   text-align: center;
+  margin-top: 2rem;
 }
 
 footer p {
@@ -47,7 +48,23 @@ footer p {
 }
 
 .header {
-  padding-left: 2rem;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem;
+  border-bottom: .25rem solid greenyellow;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100%;
+}
+
+#logo {
+  width: 10rem;
+  height: 10rem;
+}
+
+img {
+  margin: 0rem;
 }
 
 .header-h1 {
@@ -58,6 +75,7 @@ footer p {
 
 .header-h2 {
   font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
 }
 
 .start, .game {
@@ -66,13 +84,59 @@ footer p {
   justify-self: center;
 }
 
+.get-started-box {
+  border-radius: .75rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 1rem;
+  background: white;
+}
+
+.start {
+  display: flex;
+  flex-direction: column;
+}
+
+.game {
+  margin-left: 0rem;
+  margin-right: 0rem;
+}
+
+.li {
+  line-height: 2rem;
+}
+
+span {
+  padding: .25rem .75rem;
+  border-radius: .25rem;
+}
+
+#play-span, #again-span {
+  background: rgb(78, 77, 77);
+  color: white;
+}
+
+#submit-span {
+  background: white;
+  border: .05rem solid black;
+}
+
+#next-span {
+  background: greenyellow;
+}
+
+#score-span {
+  background: white;
+  color: black;
+  border: .05rem solid black;
+}
+
+
 .card {
   background: white;
   padding: 1rem;
   border-radius: .75rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-top: 0rem;
-  margin-bottom: 2rem;
+  margin: 0rem 2rem 2rem 2rem;
 }
 
 .button {
@@ -87,9 +151,25 @@ footer p {
   align-items: center;
 }
 
+.start-button-box {
+  align-self: center;
+}
+
 #start-button {
   background: rgb(78, 77, 77);
   color: white;
+  margin-top: 3rem;
+  font-size: 2rem;
+}
+
+.start-blink {
+  animation: start-blinker .75s linear infinite;
+}
+
+@keyframes start-blinker {
+  50% {
+    opacity: .5;
+  }
 }
 
 #next {
@@ -98,6 +178,16 @@ footer p {
   font-weight: bold;
   margin-bottom: 2rem;
   width: 8rem;
+}
+
+.next-blink {
+  animation: next-blinker .75s linear infinite;
+}
+
+@keyframes next-blinker {
+  50% {
+    opacity: .5;
+  }
 }
 
 #play-again {
@@ -112,12 +202,36 @@ footer p {
   background: white;
   color: black;
   margin-bottom: 2rem;
+  width: 8rem;
 }
 
 #submit {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+  background: whitesmoke;
 }
 
+.score {
+  margin-bottom: 2rem;
+  text-align: center;
+}
 
+@media (max-width: 500px) {
+  .header {
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .header-h1, .header-h2 {
+    text-align: center;
+  }
+
+  .start {
+    margin: 1rem;
+  }
+
+  .button-box {
+    flex-direction: column-reverse;
+  }
+};

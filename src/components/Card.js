@@ -28,7 +28,7 @@ const Card = (props) => {
     const onSubmit = e => {
         e.preventDefault();
         setSubmit(true);
-    }
+    };
     console.log("submit", submit);
 
     // USEEFFECT WILL TRACK CHANGES AND MAKE SURE WE DON'T KEEP RE-RENDERING
@@ -112,7 +112,7 @@ const Card = (props) => {
                     />
                 {props.answers[3]}
                 </label>
-                <button className="button" type="submit" id="submit" onClick={onClick}>Submit Answer</button>
+                <button className="button" type="submit" id="submit" onClick={onClick}>SUBMIT</button>
             </form>
             <div>
                 {showResults ? <Results /> : null}
