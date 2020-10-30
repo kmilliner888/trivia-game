@@ -113,6 +113,7 @@ span {
 #play-span, #again-span {
   background: rgb(78, 77, 77);
   color: white;
+  border: .05rem solid black;
 }
 
 #submit-span {
@@ -122,6 +123,7 @@ span {
 
 #next-span {
   background: greenyellow;
+  border: .05rem solid black;
 }
 
 #score-span {

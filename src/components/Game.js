@@ -31,11 +31,16 @@ const Game = () => {
     const [score, setScore] = useState([]);
     const [showTotal, setShowTotal] = useState(false);
 
+    console.log('cardData', cardData);
+
     const collectAnswers = answer => {
         setScore([...score, answer]);
     };
 
-    let triviaRound = cardData.map((card) => {
+    let triviaRound = cardData.map((card, i) => {
+        if (card){
+            shuffleArray(cardData[i].answers);
+        }
         return <Card
         key={card.id}
         id={card.id}
@@ -88,7 +93,7 @@ const Game = () => {
     )
 
     return (
-        <div className="game">
+        <div className ="game" id="game">
             <div>
                 {triviaRound[card]}
             </div>

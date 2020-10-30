@@ -8,7 +8,7 @@ import { Route } from 'react-router-dom';
 
 const App = () => {
   return (
-    <div className="app">
+    <div className="app" data-testid="app">
       <header className="header">
           <div>
             <img src={emoji} alt="thinking emoji" id="logo"/>
