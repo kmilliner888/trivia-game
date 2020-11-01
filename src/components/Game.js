@@ -8,7 +8,7 @@ import Card from "./Card";
 import data from '../data/data';
 import { Link } from 'react-router-dom';
 
-//Round consists of random 10 cards/objects from cardData array
+// Round consists of random 10 cards/objects from cardData array
 // Create triviaRound which is set to randomized data array
 // Limits number of cards to 10, then maps over the array
 // 10 Card components created for the triviaRound
@@ -31,15 +31,17 @@ const Game = () => {
     const [score, setScore] = useState([]);
     const [showTotal, setShowTotal] = useState(false);
 
-    console.log('cardData', cardData);
-
+    /* This function allows Game component to get correct answer data back from the Card Component
+    and put it into the setScore array so it can be totaled at the end */
     const collectAnswers = answer => {
         setScore([...score, answer]);
     };
 
+    /* Creating a trivia round of random question cards from the Card component,
+    with answers in randomized order */
     let triviaRound = cardData.map((card, i) => {
         if (card){
-            shuffleArray(cardData[i].answers);
+            shuffleArray(cardData[i].answers); //Shuffle the answers array
         }
         return <Card
         key={card.id}
@@ -52,7 +54,8 @@ const Game = () => {
         />
     });
 
-
+    /*This function handles Next button, and shows next question/card
+    as long as it's not the last question/card*/
     const handleCardOnClick = () => {
         setCard(prev => {
             if (prev === triviaRound.length-1) {
@@ -63,6 +66,9 @@ const Game = () => {
         });
     };
 
+    /*This function handles Get Score button,
+    and if there are no more questions in the round,
+    the score  will be shown */
     const handleScoreOnClick = (i) => {
         if (card === null) {
             setShowTotal(true)
@@ -93,7 +99,7 @@ const Game = () => {
     )
 
     return (
-        <div className ="game" id="game">
+        <div className ="game" data-testid="game" id="game">
             <div>
                 {triviaRound[card]}
             </div>

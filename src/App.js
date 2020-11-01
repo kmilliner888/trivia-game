@@ -1,14 +1,14 @@
 // App is start page for game, includes title, instructions, PLAY GAME button
 import React from 'react';
 import './App.css';
-import emoji from './img/emoji.png';
+import emoji from './img/1F914_black.png';
 import Start from './components/Start';
 import Game from './components/Game';
 import { Route } from 'react-router-dom';
 
 const App = () => {
   return (
-    <div className="app" data-testid="app">
+    <div className="app" data-testid="app" id="app">
       <header className="header">
           <div>
             <img src={emoji} alt="thinking emoji" id="logo"/>

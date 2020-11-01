@@ -6,8 +6,6 @@ import React, { useState, useEffect } from "react";
 
 // CREATE A QUESTION CARD, USING PROPS (data) FROM THE GAME COMPONENT
 const Card = (props) => {
-    console.log('Card props', props);
-    console.log('collectCorrect', props.collectCorrect);
     // Collect the input selection here
     const [selection, setSelection] = useState([]);
     // If the input choice is correct, correct selection collected here
@@ -16,9 +14,6 @@ const Card = (props) => {
     const [showResults, setShowResults] = useState(false)
     // When submit button is clicked, boolean is updated to disable all inputs so answer can only be submitted once
     const [submit, setSubmit] = useState(false);
-
-    console.log('selection', selection);
-    console.log('correctAnswer', correctAnswer);
 
     // Selection state gets updated when input is clicked
     const onChange = e => {
@@ -29,7 +24,6 @@ const Card = (props) => {
         e.preventDefault();
         setSubmit(true);
     };
-    console.log("submit", submit);
 
     // USEEFFECT WILL TRACK CHANGES AND MAKE SURE WE DON'T KEEP RE-RENDERING
     // If the input selection is the correct answer, add selection to the correctAnswer state
@@ -61,7 +55,7 @@ const Card = (props) => {
     // Each selection is an answer from the array, and thus gets checked upon clicking
     // All inputs get disabled if the submit state becomes true
     return (
-        <div className="card">
+        <div className="card" data-testid="card" id="card">
             <h1>{props.question}</h1>
             <form className="question" onSubmit={onSubmit}>
                 <label>

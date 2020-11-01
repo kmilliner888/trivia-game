@@ -3,6 +3,7 @@
 ## An application that displays trivia questions with multiple-choice answers to select from.
 
 ## React & JavaScript were used to build this app, including React Router for a link.
+## React testing library/jest
 
 ### Assumptions
   - A round of trivia has 10 Questions
