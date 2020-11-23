@@ -1,9 +1,10 @@
 # Trivia Game
+## Click here to visit app: https://km-trivia-game.herokuapp.com/
 
 ## An application that displays trivia questions with multiple-choice answers to select from.
 
 ## React & JavaScript were used to build this app, including React Router for a link.
-## React testing library/jest
+
 
 ### Assumptions
   - A round of trivia has 10 Questions
@@ -31,3 +32,9 @@
 - Click **NEXT** button to move on to the next question.
 - After last question in the round, click **GET SCORE** button to see # of correct questions answered.
 - Click **PLAY AGAIN** button to play another round of trivia.
+
+### Features for the future:
+
+- Full testing suite using jest
+- User registration/login, and a way to keep track of progress
+- Connect to random trivia API so there are always fresh questions
